@@ -22,7 +22,7 @@
     "use strict";
     class SerialScaleController {
         constructor() {
-            this.encoder = new TextEncoderStream();
+            this.textEncoder = new TextEncoderStream();
             this.decoder = new TextDecoder();
         }
         async init() {
