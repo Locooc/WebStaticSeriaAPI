@@ -88,7 +88,7 @@
     });
 
     async function getSerialMessage() {
-      document.querySelector("#serial-messages-container .message").innerText += await serialScaleController.read()
+      document.querySelector("#serial-messages-container .message").innerText += await serialScaleController.write()
     }
 
     setSerialMessages.addEventListener('pointerdown', async () => {
