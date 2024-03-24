@@ -22,7 +22,7 @@
     "use strict";
     class SerialScaleController {
         constructor() {
-            this.encoder = new TextEncoder();
+            this.encoder = new TextEncoderStream();
             this.decoder = new TextDecoder();
         }
         async init() {
@@ -61,9 +61,11 @@
         }
         async write(message) {
             try {
-                const writeData = await this.writer.write(message);
-                console.log(wrieData);
-                return this.decoder.decode(writeData.value);
+                const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
+                const writer = textEncoder.writable.getWriter();
+                const writeData = await writer.write(message);
+                console.log(writeData);
+                return writeData.value;
             } catch (err) {
                 const errorMessage = `error write data: ${err}`;
                 console.error(errorMessage);
