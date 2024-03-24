@@ -61,9 +61,8 @@
         }
         async write() {
             try {
-                const writer = port.writable.getWriter();
                 const data = new Uint8Array([104, 101, 108, 108, 111]); // hello
-                const message = await writer.write(data);
+                const message = await this.writer.write(data);
                 console.log(message)
                 return messsage.value;
             } catch (err) {
